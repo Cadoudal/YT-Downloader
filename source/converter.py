@@ -1,9 +1,11 @@
 from pathlib import Path
-import ffmpeg
+import ffmpeg # pyright: ignore[reportMissingImports]
+from tqdm import tqdm  # Ajout de tqdm
 
 def convert_m4a_to_mp3(directory: Path):
-    """Convertit tous les fichiers .m4a du dossier en .mp3"""
-    for m4a_file in directory.glob("*.m4a"):
+    """Convertit tous les fichiers .m4a du dossier en .mp3 avec une barre de progression"""
+    m4a_files = list(directory.glob("*.m4a"))
+    for m4a_file in tqdm(m4a_files, desc="Conversion M4A → MP3"):
         mp3_file = m4a_file.with_suffix(".mp3")
         try:
             (
@@ -13,10 +15,7 @@ def convert_m4a_to_mp3(directory: Path):
                 .overwrite_output()
                 .run(quiet=True)
             )
-            print(f"Converti : {m4a_file.name} → {mp3_file.name}")
-            
-            # Suppression du fichier .m4a original
+            #tqdm.write(f"Converti : {m4a_file.name} → {mp3_file.name}")
             m4a_file.unlink()
-
         except ffmpeg.Error as e:
-            print(f"Erreur conversion {m4a_file.name} : {e}")
+            tqdm.write(f"Erreur conversion {m4a_file.name} : {e}")
