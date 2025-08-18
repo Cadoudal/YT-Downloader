@@ -6,3 +6,6 @@ tqdm>=4.65.0
 
 # Pour compatibilité avec anciennes versions de Python (facultatif si >=3.4)
 pathlib2>=2.3.7 ; python_version < "3.4"
+
+#Pour la conversion des .m4a vers .mp3
+ffmpeg-python>=0.2.0

@@ -1,6 +1,7 @@
 from config import URL_FILE, DOWNLOAD_DIR
 from utils import read_urls, ensure_dir
 from downloader import download_audio
+from converter import convert_m4a_to_mp3
 
 def main():
     print("YT-Downloader démarré...")
@@ -21,6 +22,9 @@ def main():
     # Téléchargement
     download_audio(urls, DOWNLOAD_DIR)
 
+    # Conversion de m4a vers mp3
+    convert_m4a_to_mp3(DOWNLOAD_DIR)
+    
     print("Téléchargement terminé !")
 
 if __name__ == "__main__":
