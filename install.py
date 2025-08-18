@@ -37,7 +37,7 @@ else:
     PYTHON_BIN = VENV_DIR / "bin" / "python3"
 
 # --- Installation des dépendances ---
-REQ_FILE = PROJECT_DIR / "source" / "requirements.txt"
+REQ_FILE = PROJECT_DIR / "requirements.txt"
 if not REQ_FILE.exists():
     print(f"Erreur : fichier requirements.txt introuvable : {REQ_FILE}")
     sys.exit(1)
