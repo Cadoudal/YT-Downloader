@@ -1,16 +1,11 @@
 #!/usr/bin/env python3
-"""
-Installateur multiplateforme pour YT-Downloader
-Linux / macOS / Windows
-"""
-
-import os
-import sys
-import subprocess
 from pathlib import Path
+import subprocess
+import sys
+import os
 import platform
 
-
+# --- Choix du répertoire d'installation ---
 install_path = input("Où voulez-vous installer YT-Downloader ? [par défaut : répertoire courant] ")
 if not install_path:
     install_path = Path.cwd()
@@ -18,57 +13,38 @@ else:
     install_path = Path(install_path).expanduser()
 
 PROJECT_DIR = install_path / "YT-Downloader"
-REPO_URL = "https://github.com/Cadoudal/YT-Downloader.git"
+
+# --- Cloner le dépôt GitHub si nécessaire ---
+if not PROJECT_DIR.exists():
+    print(f"Clonage du projet dans {PROJECT_DIR}...")
+    subprocess.run(["git", "clone", "https://github.com/Cadoudal/YT-Downloader.git", str(PROJECT_DIR)], check=True)
+else:
+    print(f"Le dossier {PROJECT_DIR} existe déjà. Mise à jour du dépôt...")
+    subprocess.run(["git", "-C", str(PROJECT_DIR), "pull"], check=True)
+
+# --- Création du virtualenv ---
 VENV_DIR = PROJECT_DIR / "venv"
+if not VENV_DIR.exists():
+    print("Création du virtualenv...")
+    subprocess.run([sys.executable, "-m", "venv", str(VENV_DIR)], check=True)
+else:
+    print("Virtualenv déjà existant.")
+
+# --- Détection du binaire Python dans le venv ---
+if platform.system() == "Windows":
+    PYTHON_BIN = VENV_DIR / "Scripts" / "python.exe"
+else:
+    PYTHON_BIN = VENV_DIR / "bin" / "python3"
+
+# --- Installation des dépendances ---
 REQ_FILE = PROJECT_DIR / "source" / "requirements.txt"
+if not REQ_FILE.exists():
+    print(f"Erreur : fichier requirements.txt introuvable : {REQ_FILE}")
+    sys.exit(1)
 
-def run(cmd, shell=False):
-    """Exécute une commande et stoppe en cas d'erreur"""
-    print(f"💻 Exécution : {' '.join(cmd) if isinstance(cmd, list) else cmd}")
-    result = subprocess.run(cmd, shell=shell)
-    if result.returncode != 0:
-        print("❌ Une erreur est survenue. Arrêt de l'installation.")
-        sys.exit(1)
+print("Installation des dépendances...")
+subprocess.run([str(PYTHON_BIN), "-m", "pip", "install", "--upgrade", "pip"], check=True)
+subprocess.run([str(PYTHON_BIN), "-m", "pip", "install", "-r", str(REQ_FILE)], check=True)
 
-def clone_or_update_repo():
-    if PROJECT_DIR.exists():
-        print(f"🔄 Le projet existe déjà dans {PROJECT_DIR}, mise à jour ...")
-        run(["git", "-C", str(PROJECT_DIR), "pull"])
-    else:
-        print(f"📥 Clonage du projet dans {PROJECT_DIR} ...")
-        run(["git", "clone", REPO_URL, str(PROJECT_DIR)])
-
-def create_virtualenv():
-    if not VENV_DIR.exists():
-        print(f"🐍 Création de l'environnement virtuel dans {VENV_DIR} ...")
-        run([sys.executable, "-m", "venv", str(VENV_DIR)])
-    else:
-        print(f"✅ Environnement virtuel déjà existant : {VENV_DIR}")
-
-def install_requirements():
-    if platform.system() == "Windows":
-        pip_exe = VENV_DIR / "Scripts" / "pip.exe"
-    else:
-        pip_exe = VENV_DIR / "bin" / "pip"
-
-    if not REQ_FILE.exists():
-        print(f"❌ Fichier requirements.txt introuvable : {REQ_FILE}")
-        sys.exit(1)
-
-    print("📦 Installation des dépendances Python ...")
-    run([str(pip_exe), "install", "--upgrade", "pip"])
-    run([str(pip_exe), "install", "-r", str(REQ_FILE)])
-
-def main():
-    clone_or_update_repo()
-    create_virtualenv()
-    install_requirements()
-    print("\n🎉 Installation terminée !")
-    if platform.system() == "Windows":
-        python_path = VENV_DIR / "Scripts" / "python.exe"
-    else:
-        python_path = VENV_DIR / "bin" / "python"
-    print(f"Pour lancer le projet :\n  cd {PROJECT_DIR}\n  {python_path} main.py")
-
-if __name__ == "__main__":
-    main()
+print("\nInstallation terminée !")
+print(f"Pour lancer le projet :\n 1. Activez le virtualenv :\n    source {VENV_DIR}/bin/activate  (Linux/macOS)\n    {VENV_DIR}\\Scripts\\activate   (Windows)\n 2. Lancez main.py :\n    python {PROJECT_DIR}/source/main.py")
