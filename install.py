@@ -10,8 +10,15 @@ import subprocess
 from pathlib import Path
 import platform
 
+
+install_path = input("Où voulez-vous installer YT-Downloader ? [par défaut : répertoire courant] ")
+if not install_path:
+    install_path = Path.cwd()
+else:
+    install_path = Path(install_path).expanduser()
+
+PROJECT_DIR = install_path / "YT-Downloader"
 REPO_URL = "https://github.com/Cadoudal/YT-Downloader.git"
-PROJECT_DIR = Path.home() / "YT-Downloader"
 VENV_DIR = PROJECT_DIR / "venv"
 REQ_FILE = PROJECT_DIR / "source" / "requirements.txt"
 
