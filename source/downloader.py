@@ -2,7 +2,7 @@ from pytubefix import YouTube
 from pathlib import Path
 from tqdm import tqdm
 
-def download_audio(urls: list[str], target_dir: Path):
+def download_audio(urls: list[str], target_dir: Path, log_file: Path):
     """Télécharge l'audio de chaque URL dans target_dir avec barre de progression"""
     for url in tqdm(urls, desc="Téléchargement", unit="vidéo"):
         try:
@@ -16,4 +16,5 @@ def download_audio(urls: list[str], target_dir: Path):
             stream.download(output_path=str(target_dir))
         
         except Exception as e:
-            print(f"Erreur pour {url}: {e}")
+            with open(log_file, "a") as log:
+                log.write(f"DOWNLOAD FAIL: {url} : {e}\n")
