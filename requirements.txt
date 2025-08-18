@@ -1,0 +1,8 @@
+# Pour télécharger et gérer les vidéos YouTube
+pytubefix>=1.0.0
+
+# Barre de progression pour suivre les téléchargements
+tqdm>=4.65.0
+
+# Pour compatibilité avec anciennes versions de Python (facultatif si >=3.4)
+pathlib2>=2.3.7 ; python_version < "3.4"
