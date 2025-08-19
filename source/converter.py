@@ -1,5 +1,5 @@
 from pathlib import Path
-import ffmpeg # pyright: ignore[reportMissingImports]
+import ffmpeg 
 from tqdm import tqdm  # Ajout de tqdm
 
 def convert_m4a_to_mp3(directory: Path, log_file: Path):
