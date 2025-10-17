@@ -1,0 +1,9 @@
+DOWNLOAD FAIL: ['https://www.youtube.com/playlist?list=PLI29ujhdHQUnUpiFB86Re7CV-UWopDlFc'] : Playlist.__init__() got an unexpected keyword argument 'on_progress_callback'
+DOWNLOAD FAIL: ['https://www.youtube.com/playlist?list=PLI29ujhdHQUnUpiFB86Re7CV-UWopDlFc'] : Playlist.__init__() got an unexpected keyword argument 'on_progress_callback'
+DOWNLOAD FAIL: ['https://www.youtube.com/playlist?list=PLI29ujhdHQUnUpiFB86Re7CV-UWopDlFc'] : Playlist.__init__() got an unexpected keyword argument 'on_progress_callback'
+DOWNLOAD FAIL: https://www.youtube.com/playlist?list=PLCoKfEIk022ViFCWCBaLjovXT1ITGhgM- : MfeRbKV8M8s is unavailable
+DOWNLOAD FAIL: https://www.youtube.com/playlist?list=PLCoKfEIk022ViFCWCBaLjovXT1ITGhgM- : MfeRbKV8M8s is unavailable
+DOWNLOAD FAIL: https://www.youtube.com/playlist?list=PLCoKfEIk022ViFCWCBaLjovXT1ITGhgM- : MfeRbKV8M8s is unavailable
+DOWNLOAD FAIL: https://www.youtube.com/playlist?list=PLCoKfEIk022ViFCWCBaLjovXT1ITGhgM- : MfeRbKV8M8s is unavailable
+DOWNLOAD FAIL: https://www.youtube.com/playlist?list=PLCoKfEIk022ViFCWCBaLjovXT1ITGhgM- : MfeRbKV8M8s is unavailable
+DOWNLOAD FAIL: https://www.youtube.com/playlist?list=PLCoKfEIk022ViFCWCBaLjovXT1ITGhgM- : MfeRbKV8M8s is unavailable

@@ -1,6 +1,6 @@
 from config import DOWNLOAD_DIR, LOG_FILE, URL_FILE
 from converter import convert_m4a_to_mp3
-from downloader import download_audio, download_video
+from downloader import download_audio, download_video, download_video_playlist
 from utils import ensure_dir, read_urls
 
 
@@ -20,6 +20,7 @@ def main():
                 print("   1. La vidéo")
                 print("   2. L'audio")
                 print("   3. Convertir uniquement")
+                print("   4. Les vidéos d'un playlist")
                 choix = input("Choix : ")
                 if choix == "1":
                     download_video(urls, DOWNLOAD_DIR, LOG_FILE)
@@ -28,6 +29,9 @@ def main():
                     download_audio(urls, DOWNLOAD_DIR, LOG_FILE)
                     break
                 elif choix == "3":
+                    break
+                elif choix == "4":
+                    download_video_playlist(urls, DOWNLOAD_DIR, LOG_FILE)
                     break
                 else:
                     print("Option invalide")
