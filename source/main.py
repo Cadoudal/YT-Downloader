@@ -1,6 +1,6 @@
-from config import DOWNLOAD_DIR, LOG_FILE, URL_FILE
-from downloader import download
-from utils import ensure_dir, read_urls
+from config import DOWNLOAD_DIR, URL_FILE
+from downloader import download_yt, get_list_of_YouToube_instance
+from utils import ensure_dir, read_urls, log
 
 
 def main():
@@ -14,13 +14,13 @@ def main():
     try:
         urls = read_urls(URL_FILE)
         if urls:
-            download(urls=urls, target_dir=DOWNLOAD_DIR, log_file=LOG_FILE)
+            yt_list = get_list_of_YouToube_instance(urls)
         else:
-            print("Aucune URL trouvée dans urls.txt")
+            log("Aucune URL trouvée dans urls.txt")
     except Exception as e:
-        print(f"Erreur lecture URLs : {e}")
+        log(f"Erreur lecture URLs : {e}")
 
-    print("Travail terminé !")
+    download_yt(yt_list=yt_list, target_dir=DOWNLOAD_DIR)
 
 
 if __name__ == "__main__":
