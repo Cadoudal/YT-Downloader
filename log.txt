@@ -1,0 +1,2 @@
+29-01-2026 11:38:38 | DOWNLOAD FAIL: https://www.youtube.com/playlist?list=PLYhLDAqIy7vNVLtAzASuk09aHthVrFyEJ : regex_search: could not find match for (?:v=|\/)([0-9A-Za-z_-]{11}).*
+29-01-2026 11:38:38 | DOWNLOAD FAIL: https://www.youtube.com/playlist?list=PLI29ujhdHQUnUpiFB86Re7CV-UWopDlFc : regex_search: could not find match for (?:v=|\/)([0-9A-Za-z_-]{11}).*

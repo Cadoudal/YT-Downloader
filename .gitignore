@@ -9,5 +9,5 @@ downloads/
 .vscode/
 .DS_Store
 Thumbs.db
-*urls.txt
-*log.txt
+data/urls.txt
+log.txt
