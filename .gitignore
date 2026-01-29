@@ -6,6 +6,7 @@ downloads/
 *.pyd
 *.log
 *.tmp
+*.mp4
 .vscode/
 .DS_Store
 Thumbs.db
