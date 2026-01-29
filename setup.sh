@@ -9,9 +9,9 @@ clear
 echo "=== YT-Downloader Setup ==="
 
 # 1️⃣ Créer l'environnement virtuel si inexistant
-if [ ! -d "venv" ]; then
+if [ ! -d ".venv" ]; then
     echo "Création de l'environnement virtuel..."
-    python3 -m venv venv
+    python3 -m venv .venv
 else
     echo "Environnement virtuel déjà existant."
 fi
@@ -19,7 +19,7 @@ fi
 # 2️⃣ Activer l'environnement virtuel
 echo "Activation de l'environnement virtuel..."
 # shellcheck disable=SC1091
-source venv/bin/activate
+source .venv/bin/activate
 
 # 3️⃣ Installer les dépendances
 echo "Installation des dépendances..."
@@ -39,4 +39,4 @@ fi
 
 echo "=== Setup terminé ==="
 echo "Pour lancer le script :"
-echo "source venv/bin/activate && python3 source/main.py"
+echo "./run.sh"
